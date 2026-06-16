@@ -5,6 +5,7 @@
 package ec.edu.ups.carrito.controllers;
 
 import ec.edu.ups.carrito.models.Producto;
+import ec.edu.ups.carrito.view.BuscarProductoView;
 import ec.edu.ups.carrito.view.CrearProductoView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,6 +17,7 @@ import java.awt.event.ActionListener;
 public class ProductoController {
     private Producto producto;
     private CrearProductoView crearProductoView;
+    private BuscarProductoView buscarProductoView;
     
     public ProductoController(CrearProductoView crearProductoView){
         this.crearProductoView = crearProductoView;
