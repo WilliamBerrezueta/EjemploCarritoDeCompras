@@ -4,6 +4,7 @@
  */
 package ec.edu.ups.carrito.controllers;
 
+import ec.edu.ups.carrito.dao.ProductoDAO;
 import ec.edu.ups.carrito.models.Producto;
 import ec.edu.ups.carrito.view.BuscarProductoView;
 import ec.edu.ups.carrito.view.CrearProductoView;
@@ -15,12 +16,13 @@ import java.awt.event.ActionListener;
  * @author USER
  */
 public class ProductoController {
-    private Producto producto;
+    private ProductoDAO productoDAO;
     private CrearProductoView crearProductoView;
     private BuscarProductoView buscarProductoView;
     
-    public ProductoController(CrearProductoView crearProductoView){
+    public ProductoController(CrearProductoView crearProductoView, ProductoDAO productoDAO){
         this.crearProductoView = crearProductoView;
+        this.productoDAO = productoDAO;
         configurarEventosCrearProductos();
     }
     
@@ -29,8 +31,9 @@ public class ProductoController {
         String nombre = crearProductoView.getTxtNombre().getText();
         double precio = Double.parseDouble(crearProductoView.getTxtPrecio().getText());
         
-        producto = new Producto(codigo, nombre, precio);
-        System.out.println("Producto creado");
+        Producto producto = new Producto(codigo, nombre, precio);
+        productoDAO.crear(producto);
+        crearProductoView.mostarMensaje("Producto creado");
         
     }
     public void configurarEventosCrearProductos(){

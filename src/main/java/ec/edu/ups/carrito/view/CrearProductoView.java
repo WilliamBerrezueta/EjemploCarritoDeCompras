@@ -5,6 +5,7 @@
 package ec.edu.ups.carrito.view;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -191,7 +192,7 @@ public class CrearProductoView extends javax.swing.JInternalFrame {
     public void setTxtPrecio(JTextField txtPrecio) {
         this.txtPrecio = txtPrecio;
     }
-
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
@@ -204,4 +205,8 @@ public class CrearProductoView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables
+
+    public void mostarMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje);
+    }
 }

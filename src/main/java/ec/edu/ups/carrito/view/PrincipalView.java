@@ -5,6 +5,8 @@
 package ec.edu.ups.carrito.view;
 
 import ec.edu.ups.carrito.controllers.ProductoController;
+import ec.edu.ups.carrito.dao.ProductoDAO;
+import ec.edu.ups.carrito.dao.ProductoDAOMemoria;
 
 /**
  *
@@ -13,6 +15,7 @@ import ec.edu.ups.carrito.controllers.ProductoController;
 public class PrincipalView extends javax.swing.JFrame {
     
     private CrearProductoView crearProductoView;
+    private ProductoDAO productoDAO;
     private BuscarProductoView buscarProductoView;
     private ActualizarProductoView actualizarProductoView;
     private EliminarProductoView eliminarProductoView;
@@ -24,6 +27,13 @@ public class PrincipalView extends javax.swing.JFrame {
      */
     public PrincipalView() {
         initComponents();
+        
+        crearProductoView = new CrearProductoView();
+        buscarProductoView = new BuscarProductoView();
+        actualizarProductoView = new ActualizarProductoView();
+        eliminarProductoView = new EliminarProductoView();
+        productoDAO = new ProductoDAOMemoria();
+        productoController = new ProductoController(crearProductoView, productoDAO);
 
     }
 
@@ -108,8 +118,8 @@ public class PrincipalView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void actualizarProductosMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarProductosMenuActionPerformed
-        if(actualizarProductoView == null || !actualizarProductoView.isVisible()){
-            actualizarProductoView = new ActualizarProductoView();
+        if(!actualizarProductoView.isVisible()){
+            desktopPane.remove(actualizarProductoView);
             actualizarProductoView.setVisible(true);
             desktopPane.add(actualizarProductoView);
         }
@@ -117,25 +127,24 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void crearProductoMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearProductoMenuActionPerformed
         // TODO add your handling code here:
-        if(crearProductoView == null || !crearProductoView.isVisible()){
-            crearProductoView = new CrearProductoView();
-            productoController = new ProductoController(crearProductoView);
+        if(!crearProductoView.isVisible()){
+            desktopPane.remove(crearProductoView);
             crearProductoView.setVisible(true);
             desktopPane.add(crearProductoView);
         }
     }//GEN-LAST:event_crearProductoMenuActionPerformed
 
     private void buscarProductoMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarProductoMenuActionPerformed
-        if(buscarProductoView == null || !buscarProductoView.isVisible()){
-            buscarProductoView = new BuscarProductoView();
+        if(!buscarProductoView.isVisible()){
+            desktopPane.remove(buscarProductoView);
             buscarProductoView.setVisible(true);
             desktopPane.add(buscarProductoView);
         }
     }//GEN-LAST:event_buscarProductoMenuActionPerformed
 
     private void eliminarProductoMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarProductoMenuActionPerformed
-        if(eliminarProductoView == null || !eliminarProductoView.isVisible()){
-            eliminarProductoView = new EliminarProductoView();
+        if(!eliminarProductoView.isVisible()){
+            desktopPane.remove(eliminarProductoView);
             eliminarProductoView.setVisible(true);
             desktopPane.add(eliminarProductoView);
         }
