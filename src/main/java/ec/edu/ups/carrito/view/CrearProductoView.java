@@ -192,6 +192,9 @@ public class CrearProductoView extends javax.swing.JInternalFrame {
     public void setTxtPrecio(JTextField txtPrecio) {
         this.txtPrecio = txtPrecio;
     }
+    public void mostrarMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje);
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -206,7 +209,4 @@ public class CrearProductoView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables
 
-    public void mostarMensaje(String mensaje) {
-        JOptionPane.showMessageDialog(this, mensaje);
-    }
 }

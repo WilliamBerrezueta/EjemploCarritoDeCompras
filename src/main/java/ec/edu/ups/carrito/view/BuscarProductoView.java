@@ -182,6 +182,9 @@ public class BuscarProductoView extends javax.swing.JInternalFrame {
     public void setTxtPrecio(JTextField txtPrecio) {
         this.txtPrecio = txtPrecio;
     }
+    public void mostrarMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje);
+    }
     
 
 

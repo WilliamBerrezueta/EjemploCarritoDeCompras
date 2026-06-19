@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/MDIApplication.java to edit this template
  */
 package ec.edu.ups.carrito.view;
-
 import ec.edu.ups.carrito.controllers.ProductoController;
 import ec.edu.ups.carrito.dao.ProductoDAO;
 import ec.edu.ups.carrito.dao.ProductoDAOMemoria;
@@ -33,9 +32,16 @@ public class PrincipalView extends javax.swing.JFrame {
         actualizarProductoView = new ActualizarProductoView();
         eliminarProductoView = new EliminarProductoView();
         productoDAO = new ProductoDAOMemoria();
-        productoController = new ProductoController(crearProductoView, productoDAO);
+        productoController = new ProductoController(
+        crearProductoView,
+        buscarProductoView,
+        actualizarProductoView,
+        eliminarProductoView,
+        productoDAO
+);
 
     }
+  
 
     /**
      * This method is called from within the constructor to initialize the form.

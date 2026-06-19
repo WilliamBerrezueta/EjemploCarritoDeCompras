@@ -5,6 +5,7 @@
 package ec.edu.ups.carrito.view;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -196,6 +197,9 @@ public class ActualizarProductoView extends javax.swing.JInternalFrame {
 
     public void setTxtPrecio(JTextField txtPrecio) {
         this.txtPrecio = txtPrecio;
+    }
+    public void mostrarMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje);
     }
 
 
