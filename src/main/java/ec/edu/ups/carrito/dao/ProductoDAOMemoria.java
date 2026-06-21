@@ -53,5 +53,10 @@ public class ProductoDAOMemoria implements ProductoDAO {
             lista.remove(productoEncontrado);
         }
     }
+
+    @Override
+    public List<Producto> listar() {
+        return lista;
+    }
     
 }

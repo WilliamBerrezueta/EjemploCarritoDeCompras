@@ -19,7 +19,7 @@ public class ProductoController {
     private ActualizarProductoView actualizarView;
     private EliminarProductoView eliminarView;
 
-    public ProductoController(CrearProductoView crearView,BuscarProductoView buscarView,ActualizarProductoView actualizarView,EliminarProductoView eliminarView,ProductoDAO productoDAO) {
+    public ProductoController(CrearProductoView crearView, BuscarProductoView buscarView, ActualizarProductoView actualizarView, EliminarProductoView eliminarView, ProductoDAO productoDAO) {
 
         this.crearView = crearView;
         this.buscarView = buscarView;
@@ -35,11 +35,11 @@ public class ProductoController {
         crearView.getBtnAceptar().addActionListener(e -> crearProducto());
 
         buscarView.getBtnBuscar().addActionListener(e -> buscarProducto());
-        
+
         eliminarView.getBtnBuscar().addActionListener(e -> buscarProductoEliminar());
 
         eliminarView.getBtnEliminar().addActionListener(e -> eliminarProducto());
-        
+
         actualizarView.getBtnBuscar().addActionListener(e -> buscarProductoActualizar());
 
         actualizarView.getBtnActualizar().addActionListener(e -> actualizarProducto());
@@ -68,17 +68,18 @@ public class ProductoController {
             buscarView.mostrarMensaje("Producto no encontrado");
         }
     }
+
     public void buscarProductoActualizar() {
-    int codigo = Integer.parseInt(actualizarView.getTxtCodigo().getText());
+        int codigo = Integer.parseInt(actualizarView.getTxtCodigo().getText());
 
-    Producto producto = productoDAO.buscar(codigo);
+        Producto producto = productoDAO.buscar(codigo);
 
-    if (producto != null) {
-        actualizarView.getTxtNombre().setText(producto.getNombre());
-        actualizarView.getTxtPrecio().setText(String.valueOf(producto.getPrecio()));
-    } else {
-        actualizarView.mostrarMensaje("No existe ese producto");
-       }
+        if (producto != null) {
+            actualizarView.getTxtNombre().setText(producto.getNombre());
+            actualizarView.getTxtPrecio().setText(String.valueOf(producto.getPrecio()));
+        } else {
+            actualizarView.mostrarMensaje("No existe ese producto");
+        }
     }
 
     public void actualizarProducto() {
@@ -92,17 +93,18 @@ public class ProductoController {
 
         actualizarView.mostrarMensaje("Producto actualizado");
     }
+
     public void buscarProductoEliminar() {
-    int codigo = Integer.parseInt(eliminarView.getTxtCodigo().getText());
+        int codigo = Integer.parseInt(eliminarView.getTxtCodigo().getText());
 
-    Producto producto = productoDAO.buscar(codigo);
+        Producto producto = productoDAO.buscar(codigo);
 
-    if (producto != null) {
-        eliminarView.getTxtNombre().setText(producto.getNombre());
-        eliminarView.getTxtPrecio().setText(String.valueOf(producto.getPrecio()));
-    } else {
-        eliminarView.mostrarMensaje("No existe ese producto");
-       }
+        if (producto != null) {
+            eliminarView.getTxtNombre().setText(producto.getNombre());
+            eliminarView.getTxtPrecio().setText(String.valueOf(producto.getPrecio()));
+        } else {
+            eliminarView.mostrarMensaje("No existe ese producto");
+        }
     }
 
     public void eliminarProducto() {
