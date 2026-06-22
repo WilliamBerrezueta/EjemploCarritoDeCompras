@@ -10,6 +10,7 @@ import ec.edu.ups.carrito.view.CrearProductoView;
 import ec.edu.ups.carrito.view.BuscarProductoView;
 import ec.edu.ups.carrito.view.ActualizarProductoView;
 import ec.edu.ups.carrito.view.EliminarProductoView;
+import ec.edu.ups.carrito.view.ListarProductosView;
 
 public class ProductoController {
 
@@ -18,13 +19,15 @@ public class ProductoController {
     private BuscarProductoView buscarView;
     private ActualizarProductoView actualizarView;
     private EliminarProductoView eliminarView;
+    private ListarProductosView listarView;
 
-    public ProductoController(CrearProductoView crearView, BuscarProductoView buscarView, ActualizarProductoView actualizarView, EliminarProductoView eliminarView, ProductoDAO productoDAO) {
+    public ProductoController(CrearProductoView crearView, BuscarProductoView buscarView, ActualizarProductoView actualizarView, EliminarProductoView eliminarView,ListarProductosView listarView, ProductoDAO productoDAO) {
 
         this.crearView = crearView;
         this.buscarView = buscarView;
         this.actualizarView = actualizarView;
         this.eliminarView = eliminarView;
+        this.listarView = listarView;
         this.productoDAO = productoDAO;
 
         configurarEventos();
@@ -50,8 +53,23 @@ public class ProductoController {
         String nombre = crearView.getTxtNombre().getText();
         double precio = Double.parseDouble(crearView.getTxtPrecio().getText());
 
+        Producto productoRepetido = productoDAO.buscar(codigo);
+        
+        if(productoRepetido != null){
+            crearView.mostrarMensaje("Ya existe un producto con ese código");
+            return;
+        }
+        
+        for(Producto producto : productoDAO.listar()){
+            if(producto.getNombre().equalsIgnoreCase(nombre)){
+                crearView.mostrarMensaje("Ya existe un producto con ese nombre");
+                return;
+            }
+        }
+        
         Producto producto = new Producto(codigo, nombre, precio);
         productoDAO.crear(producto);
+        listarProductos();
 
         crearView.mostrarMensaje("Producto creado correctamente");
     }
@@ -90,6 +108,7 @@ public class ProductoController {
         Producto productoNuevo = new Producto(codigo, nombre, precio);
 
         productoDAO.actualizar(codigo, productoNuevo);
+        listarProductos();
 
         actualizarView.mostrarMensaje("Producto actualizado");
     }
@@ -114,9 +133,13 @@ public class ProductoController {
 
         if (producto != null) {
             productoDAO.eliminar(codigo);
+            listarProductos();
             eliminarView.mostrarMensaje("Producto eliminado");
         } else {
             eliminarView.mostrarMensaje("Producto no encontrado");
         }
+    }
+    public void listarProductos(){
+        listarView.CargarDatos(productoDAO.listar());
     }
 }

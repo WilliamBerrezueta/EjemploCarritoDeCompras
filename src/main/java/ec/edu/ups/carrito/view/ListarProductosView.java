@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 public class ListarProductosView extends javax.swing.JInternalFrame {
     
     private DefaultTableModel modelo;
+    
 
     /**
      * Creates new form ListarProductosView
@@ -34,6 +35,9 @@ public class ListarProductosView extends javax.swing.JInternalFrame {
     }
     
     public void CargarDatos(List<Producto> productos){
+        
+        modelo.setRowCount(0);
+        
         for(Producto producto : productos){
             Object[] fila = {producto.getCodigo(), producto.getNombre(), producto.getPrecio()}; 
             modelo.addRow(fila);
@@ -59,6 +63,8 @@ public class ListarProductosView extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("Lista de productos");
 
+        tblProductos.setBackground(new java.awt.Color(204, 204, 255));
+        tblProductos.setFont(new java.awt.Font("Microsoft Himalaya", 1, 14)); // NOI18N
         tblProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
